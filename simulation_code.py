@@ -157,13 +157,13 @@ ax.set_ylim(0.2, 1.0)
 ax.spines[['top','right']].set_visible(False)
 
 plt.tight_layout()
-plt.savefig("/home/claude/fig_learning_curves.png", dpi=180, bbox_inches='tight')
+plt.savefig("/Users/arezoog/Desktop/Winter 2026/NPB 136/Final Project/fig_learning_curves.png", dpi=180, bbox_inches='tight')
 plt.close()
 print("Saved fig_learning_curves.png")
 
-
+# ─────────────────────────────────────────────
 # FIGURE 3: Behavioral phenotype summary bar chart
-
+# ─────────────────────────────────────────────
 cond_names = list(conditions.keys())
 total_reward   = [results[n]["rewards"].mean()*100   for n in cond_names]
 switch_rates   = [switch_rate(results[n]["choices"])*100 for n in cond_names]
@@ -190,7 +190,7 @@ ax.legend(fontsize=9)
 ax.spines[['top','right']].set_visible(False)
 ax.set_ylim(0, 105)
 plt.tight_layout()
-plt.savefig("/home/claude/fig_phenotype_summary.png", dpi=180, bbox_inches='tight')
+plt.savefig("/Users/arezoog/Desktop/Winter 2026/NPB 136/Final Project/fig_phenotype_summary.png", dpi=180, bbox_inches='tight')
 plt.close()
 print("Saved fig_phenotype_summary.png")
 
@@ -216,7 +216,7 @@ for i, name in enumerate(cond_names):
 
 fig.suptitle("Mean Q-value Trajectories by Condition", fontsize=13, fontweight='bold', y=1.01)
 plt.tight_layout()
-plt.savefig("/home/claude/fig_qvalue_trajectories.png", dpi=180, bbox_inches='tight')
+plt.savefig("/Users/arezoog/Desktop/Winter 2026/NPB 136/Final Project/fig_qvalue_trajectories.png", dpi=180, bbox_inches='tight')
 plt.close()
 print("Saved fig_qvalue_trajectories.png")
 
