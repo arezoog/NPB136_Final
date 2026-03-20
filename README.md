@@ -1,6 +1,6 @@
 # NPB136_Final
 
-## *Modeling Dopamine and Serotonin in Reinforcement Learning: A Computational Psychiatry Approach to Depression and ADHD*
+## Modeling Dopamine and Serotonin in Reinforcement Learning: A Computational Psychiatry Approach to Depression and ADHD
 
 ### Central Question: 
 How well can a simple reinforcement-learning model, with dopamine formalized as reward prediction error signaling and serotonin formalized as either punishment sensitivity or behavioral inhibition, reproduce stylized behavioral patterns relevant to depression and ADHD? Dopamine’s link to reward prediction error is a classic result in neuroscience and RL, while recent work suggests serotonin affects reinforcement learning in more than one possible way, including punishment sensitivity, aversive processing, and behavioral inhibition. 
