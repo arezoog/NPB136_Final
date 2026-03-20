@@ -7,11 +7,11 @@ from matplotlib.gridspec import GridSpec
 
 np.random.seed(42)
 
-# ─────────────────────────────────────────────
+
 # TASK: Probabilistic reversal learning
 # 2 options: A (initially 70% reward) and B (30%)
 # Reversal at trial 50
-# ─────────────────────────────────────────────
+
 
 N_TRIALS = 100
 N_SIMS   = 200
@@ -24,7 +24,7 @@ def get_reward(trial, choice):
         p_reward = [0.30, 0.70]
     return 1 if np.random.rand() < p_reward[choice] else 0
 
-# ─────────────────────────────────────────────
+
 # Q-LEARNING with asymmetric learning rates
 # delta_t = r_t - Q_t(a_t)
 # Q_{t+1}(a) = Q_t(a) + alpha+ * max(delta,0) * k_DA
@@ -33,7 +33,7 @@ def get_reward(trial, choice):
 # Q_{t+1}(a) = Q_t(a) + alpha+ * max(delta,0) * k_DA
 #            inhibition affects beta (softmax temperature)          [Model B]
 # Choice: softmax with beta
-# ─────────────────────────────────────────────
+
 
 def run_agent(k_DA=1.0, alpha_pos=0.3, alpha_neg=0.3,
               beta=5.0, k_5HT_punish=1.0, k_5HT_inhibit=0.0,
@@ -65,9 +65,9 @@ def run_agent(k_DA=1.0, alpha_pos=0.3, alpha_neg=0.3,
 
     return all_choices, all_rewards, all_Q
 
-# ─────────────────────────────────────────────
+
 # CONDITIONS
-# ─────────────────────────────────────────────
+
 conditions = {
     "Baseline":              dict(k_DA=1.0, alpha_pos=0.3, alpha_neg=0.3, beta=5.0, k_5HT_punish=1.0, k_5HT_inhibit=0.0),
     "High Dopamine":         dict(k_DA=1.8, alpha_pos=0.3, alpha_neg=0.3, beta=5.0, k_5HT_punish=1.0, k_5HT_inhibit=0.0),
@@ -82,9 +82,9 @@ for name, params in conditions.items():
     c, r, q = run_agent(**params)
     results[name] = {"choices": c, "rewards": r, "Q": q}
 
-# ─────────────────────────────────────────────
+
 # HELPER: smooth reward and % choosing optimal
-# ─────────────────────────────────────────────
+
 def smooth(x, w=10):
     return np.convolve(x, np.ones(w)/w, mode='same')
 
@@ -108,14 +108,14 @@ def win_stay_lose_shift(choices, rewards):
 def switch_rate(choices):
     return (choices[:, 1:] != choices[:, :-1]).mean()
 
-# ─────────────────────────────────────────────
+
 # FIGURE 1: Model schematic (SVG-style with matplotlib)
-# ─────────────────────────────────────────────
+
 # (skipping schematic — will produce 3 data figures)
 
-# ─────────────────────────────────────────────
+
 # FIGURE 2: Learning curves — % optimal choice
-# ─────────────────────────────────────────────
+
 COLORS = {
     "Baseline":        "#555555",
     "High Dopamine":   "#E05C2A",
@@ -161,9 +161,9 @@ plt.savefig("/home/claude/fig_learning_curves.png", dpi=180, bbox_inches='tight'
 plt.close()
 print("Saved fig_learning_curves.png")
 
-# ─────────────────────────────────────────────
+
 # FIGURE 3: Behavioral phenotype summary bar chart
-# ─────────────────────────────────────────────
+
 cond_names = list(conditions.keys())
 total_reward   = [results[n]["rewards"].mean()*100   for n in cond_names]
 switch_rates   = [switch_rate(results[n]["choices"])*100 for n in cond_names]
@@ -194,9 +194,9 @@ plt.savefig("/home/claude/fig_phenotype_summary.png", dpi=180, bbox_inches='tigh
 plt.close()
 print("Saved fig_phenotype_summary.png")
 
-# ─────────────────────────────────────────────
+
 # FIGURE 4: Q-value trajectories for key conditions
-# ─────────────────────────────────────────────
+
 fig, axes = plt.subplots(2, 3, figsize=(14, 7), facecolor='white')
 axes = axes.flatten()
 
